@@ -1,0 +1,7 @@
+app_filmes/.metadata
+app_filmes/pubspec.lock
+app_filmes/analysis_options.yaml
+app_filmes/web/manifest.json
+app_filmes/android/app/src/main/res/drawable-v21/launch_background.xml
+app_filmes/android/app/src/main/res/drawable/launch_background.xml
+app_filmes/android/gradle/wrapper/gradle-wrapper.properties
