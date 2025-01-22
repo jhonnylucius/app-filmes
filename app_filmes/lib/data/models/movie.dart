@@ -20,13 +20,14 @@ class Movie {
   final List<String> comments;
 
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
-        id: json['id'] ?? 0,
-        name: json['titulo'] ?? '',
-        year: json['ano'] ?? 0,
-        duration: json['duracao'] ?? 0,
-        description: json['sinopse'] ?? '',
-        gender: json['genero'] ?? '',
-        urlImage: json['urlImagem'] ?? '',
-        comments: List<String>.from(json['comentarios'] ?? []),
+        id: json['id'],
+        name: json['name'],
+        year: json['year'],
+        duration: json['duration'],
+        description: json['description'],
+        gender: json['gender'],
+        urlImage: json['url_image'],
+        comments:
+            json['comments'] != null ? List<String>.from(json['comments']) : [],
       );
 }
