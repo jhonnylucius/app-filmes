@@ -1,5 +1,6 @@
 import 'package:app_filmes/controller/movie_list_controller.dart';
 import 'package:app_filmes/data/models/movie.dart';
+import 'package:app_filmes/screens/movie_list/widgets/movie_item_widget.dart';
 import 'package:app_filmes/services/service_locator.dart';
 import 'package:app_filmes/widgets/progress_indicador_widget.dart';
 import 'package:flutter/material.dart';
@@ -58,15 +59,8 @@ class _MovieListScreenState extends State<MovieListScreen> {
             itemCount: movies.length,
             itemBuilder: (context, index) {
               var movie = movies[index];
-              return ListTile(
-                leading: Image.network(
-                  movie.urlImage,
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
-                ),
-                title: Text(movie.name),
-                subtitle: Text(movie.description),
+              return MovieItemWidget(
+                movie: movie,
               );
             },
           );
