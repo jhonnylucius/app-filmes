@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 class MovieApi {
   final Dio _dio = Dio(
-    BaseOptions(baseUrl: 'https://apifilmes.webevolui.com'),
+    BaseOptions(baseUrl: 'https://apifilmes.webevolui.com/filme'),
   );
 
   Future<List<Movie>> getMovies({int skip = 0, int take = 20}) async {
