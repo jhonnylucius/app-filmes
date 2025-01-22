@@ -1,4 +1,4 @@
-import 'package:app_filmes/screens/movie_list_screen.dart';
+import 'package:app_filmes/screens/movie_list/movie_list_screen.dart';
 import 'package:app_filmes/services/service_locator.dart';
 import 'package:flutter/material.dart';
 
