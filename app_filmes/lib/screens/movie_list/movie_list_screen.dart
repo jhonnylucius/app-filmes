@@ -26,9 +26,9 @@ class _MovieListScreenState extends State<MovieListScreen> {
         title: Text('Lista de Filmes'),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
-            tooltip: 'Buscar',
+            onPressed: () => controller.getMovies(),
+            icon: Icon(Icons.refresh),
+            tooltip: 'Atualizar',
           ),
         ],
       ),
@@ -37,12 +37,6 @@ class _MovieListScreenState extends State<MovieListScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
-          }
-
-          if (snapshot.hasError) {
-            return Center(
-              child: Text('Erro ao carregar filmes: ${snapshot.error}'),
-            );
           }
 
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -55,7 +49,14 @@ class _MovieListScreenState extends State<MovieListScreen> {
             itemBuilder: (context, index) {
               var movie = movies[index];
               return ListTile(
+                leading: Image.network(
+                  movie.urlImage,
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                ),
                 title: Text(movie.name),
+                subtitle: Text(movie.description),
               );
             },
           );

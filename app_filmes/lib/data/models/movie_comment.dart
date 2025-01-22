@@ -6,12 +6,12 @@ class MovieComment {
   });
 
   final int id;
-  final String comment;
+  final String? comment;
   final DateTime createdAt; // Changed from date to createdAt
 
   factory MovieComment.fromJson(Map<String, dynamic> json) => MovieComment(
         id: json['id'],
-        comment: json['comment'],
+        comment: json['comment'] ?? '',
         createdAt: json['data_created'],
       );
 }

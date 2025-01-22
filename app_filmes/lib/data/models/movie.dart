@@ -1,5 +1,3 @@
-import 'package:app_filmes/data/models/movie_comment.dart';
-
 class Movie {
   Movie({
     required this.id,
@@ -19,18 +17,16 @@ class Movie {
   final String description;
   final String gender;
   final String urlImage;
-  final List<MovieComment> comments;
+  final List<String> comments;
 
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
-        id: json['id'],
-        name: json['name'],
-        year: json['year'],
-        duration: json['duration'],
-        description: json['description'],
-        gender: json['gender'],
-        urlImage: json['urlImage'],
-        comments: ((json['comments'] ?? []) as List)
-            .map((item) => MovieComment.fromJson(item))
-            .toList(),
+        id: json['id'] ?? 0,
+        name: json['titulo'] ?? '',
+        year: json['ano'] ?? 0,
+        duration: json['duracao'] ?? 0,
+        description: json['sinopse'] ?? '',
+        gender: json['genero'] ?? '',
+        urlImage: json['urlImagem'] ?? '',
+        comments: List<String>.from(json['comentarios'] ?? []),
       );
 }

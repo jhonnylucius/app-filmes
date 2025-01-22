@@ -3,12 +3,11 @@ import 'package:dio/dio.dart';
 
 class MovieApi {
   final Dio _dio = Dio(
-    BaseOptions(baseUrl: 'https://apifilmes.webevolui.com/filme'),
+    BaseOptions(baseUrl: 'https://apifilmes.webevolui.com'),
   );
 
   Future<List<Movie>> getMovies({int skip = 0, int take = 20}) async {
-    var response = await _dio
-        .get('/filme?skip=$skip&take=$take'); // Corrigido os parâmetros
+    var response = await _dio.get('/filme?skip=$skip&take=$take');
     return (response.data as List).map((item) => Movie.fromJson(item)).toList();
   }
 }

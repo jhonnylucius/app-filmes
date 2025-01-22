@@ -14,10 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Desabilita o banner de modo debug
+      debugShowCheckedModeBanner: false,
       title: 'Quero1Filme!',
       theme: ThemeData(
-        useMaterial3: true, // Adiciona o parâmetro useMaterial3
+        useMaterial3: true,
         scaffoldBackgroundColor: Colors.black,
         colorScheme: const ColorScheme.dark(
           primary: Colors.white,
