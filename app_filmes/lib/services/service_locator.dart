@@ -6,5 +6,5 @@ final getIt = GetIt.instance;
 
 void setupGetIt() {
   getIt.registerLazySingleton<MovieApi>(() => MovieApi());
-  getIt.registerSingleton<MovieListController>(MovieListController());
+  getIt.registerLazySingleton<MovieListController>(() => MovieListController());
 }
