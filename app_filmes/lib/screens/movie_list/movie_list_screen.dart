@@ -36,16 +36,24 @@ class _MovieListScreenState extends State<MovieListScreen> {
         stream: controller.stream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text('Carregando...');
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return Center(
+              child: Text('Erro ao carregar filmes: ${snapshot.error}'),
+            );
+          }
+
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('Nenhum filme encontrado'));
           }
 
           var movies = snapshot.data!;
-
           return ListView.builder(
-            itemCount: snapshot.data!.length,
+            itemCount: movies.length,
             itemBuilder: (context, index) {
               var movie = movies[index];
-
               return ListTile(
                 title: Text(movie.name),
               );
