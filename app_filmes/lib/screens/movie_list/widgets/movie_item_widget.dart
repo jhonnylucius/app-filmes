@@ -35,7 +35,6 @@ class MovieItemWidget extends StatelessWidget {
               SizedBox(height: 4.0),
               Text(movie.gender, style: TextStyle(fontSize: 12.0)),
               SizedBox(height: 4.0),
-              Text(movie.description, style: TextStyle(fontSize: 10.0)),
             ],
           ),
         )
