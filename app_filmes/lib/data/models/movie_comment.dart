@@ -6,12 +6,18 @@ class MovieComment {
   });
 
   final int id;
-  final String? comment;
-  final DateTime createdAt; // Changed from date to createdAt
+  final String comment;
+  final DateTime createdAt;
 
   factory MovieComment.fromJson(Map<String, dynamic> json) => MovieComment(
         id: json['id'],
         comment: json['comment'] ?? '',
-        createdAt: json['data_created'],
+        createdAt: DateTime.parse(json['created_at']),
       );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'comment': comment,
+        'created_at': createdAt.toIso8601String(),
+      };
 }
