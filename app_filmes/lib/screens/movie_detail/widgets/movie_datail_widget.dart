@@ -1,10 +1,9 @@
 import 'package:animations/animations.dart';
 import 'package:app_filmes/data/models/movie.dart';
-import 'package:duration/duration.dart';
 import 'package:flutter/material.dart';
 
-class MovieItemWidget extends StatelessWidget {
-  const MovieItemWidget({super.key, required this.movie});
+class MovieDatailWidget extends StatelessWidget {
+  const MovieDatailWidget({super.key, required this.movie});
 
   final Movie movie;
 
@@ -49,28 +48,12 @@ class MovieItemWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Ano: ${movie.year}',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Duração: ${prettyDuration(Duration(minutes: movie.duration), abbreviated: true, delimiter: ' ', spacer: '')}',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Gênero: ${movie.gender}',
+                  'Comentários: ${movie.comments}',
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   movie.description,
-                  textAlign: TextAlign.justify,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Comentários: ${movie.comments as String}',
                   textAlign: TextAlign.justify,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
