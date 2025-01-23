@@ -70,7 +70,7 @@ class MovieItemWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Comentários: ${movie.comments as String}',
+                  'Comentários: ${(movie.comments as String?) ?? 'Sem Comentários'}',
                   textAlign: TextAlign.justify,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
