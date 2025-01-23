@@ -23,9 +23,7 @@ class MovieItemWidget extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          width: 4.0,
-        ),
+        const SizedBox(width: 4.0),
         Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
