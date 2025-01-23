@@ -28,6 +28,8 @@ class MovieItemWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const AnimatedFractionallySizedBox(
+                  duration: Duration(milliseconds: 500), heightFactor: 0.5),
               Text(movie.name, style: TextStyle(fontSize: 12.0)),
               Text(movie.description, style: TextStyle(fontSize: 10.0)),
               SizedBox(height: 4.0),
