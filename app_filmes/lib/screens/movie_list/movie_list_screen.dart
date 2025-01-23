@@ -16,6 +16,7 @@ class MovieListScreen extends StatefulWidget {
 class _MovieListScreenState extends State<MovieListScreen> {
   final controller = getIt<MovieListController>();
   final Logger logger = Logger();
+  int _currentPage = 0;
 
   @override
   void initState() {
@@ -27,13 +28,7 @@ class _MovieListScreenState extends State<MovieListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista de Filmes'),
-        actions: [
-          IconButton(
-            onPressed: () => controller.getMovies(),
-            icon: Icon(Icons.search_sharp),
-          ),
-        ],
+        title: const Text('Lista de Filmes'),
       ),
       body: StreamBuilder<List<Movie>>(
         stream: controller.stream,
@@ -55,14 +50,49 @@ class _MovieListScreenState extends State<MovieListScreen> {
 
           var movies = snapshot.data!;
           logger.d('StreamBuilder data received: ${movies.length} movies');
-          return ListView.builder(
-            itemCount: movies.length,
-            itemBuilder: (context, index) {
-              var movie = movies[index];
-              return MovieItemWidget(
-                movie: movie,
-              );
-            },
+          return Stack(
+            children: [
+              // Imagem de fundo
+              Positioned.fill(
+                child: Image.network(
+                  movies[_currentPage].urlImage,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              // Sombra para melhorar a legibilidade do texto
+              Positioned.fill(
+                child: Container(
+                  color: Colors.black.withAlpha(128),
+                ),
+              ),
+              // Conteúdo principal
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const Spacer(),
+                  // Lista de filmes
+                  SizedBox(
+                    height: 300, // Aumentar a altura do PageView
+                    child: PageView.builder(
+                      itemCount: movies.length,
+                      controller: PageController(viewportFraction: 0.3),
+                      onPageChanged: (int index) {
+                        setState(() {
+                          _currentPage = index;
+                        });
+                      },
+                      itemBuilder: (context, index) {
+                        return Transform.scale(
+                          scale: index == _currentPage ? 1.0 : 0.8,
+                          child: MovieItemWidget(movie: movies[index]),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
+            ],
           );
         },
       ),
