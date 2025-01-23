@@ -39,6 +39,9 @@ dependencies:
   logger: ^2.5.0
   flutter_spinkit: ^5.2.1
   lottie: ^3.3.1
+  duration: ^4.0.3
+  animations: ^2.0.11
+  
 
 dev_dependencies:
   flutter_test:
