@@ -40,6 +40,13 @@ class _MovieListScreenState extends State<MovieListScreen> {
     }
   }
 
+  void _clearSearch() {
+    setState(() {
+      _isSearching = false;
+      controller.init();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +64,9 @@ class _MovieListScreenState extends State<MovieListScreen> {
         builder: (context, snapshot) {
           logger.d('StreamBuilder state: ${snapshot.connectionState}');
           if (snapshot.connectionState == ConnectionState.waiting) {
+            Future.delayed(const Duration(seconds: 5), () {
+              setState(() {});
+            });
             return const ProgressIndicador2Widget();
           }
 
@@ -91,6 +101,14 @@ class _MovieListScreenState extends State<MovieListScreen> {
               Column(
                 children: [
                   const SizedBox(height: 16),
+                  if (_isSearching)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: _clearSearch,
+                      ),
+                    ),
                   const Spacer(),
                   // Lista de filmes
                   SizedBox(
