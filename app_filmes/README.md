@@ -7,7 +7,7 @@
   
   ## Todo App - Flutter & Dart
 
-  ![🎥Demonstração do Tradutor de Artigos](app_filmes/assets/demonstracao.gif)
+  ![🎥Demonstração do Tradutor de Artigos](assets/demonstracao.gif)
   
   ### Aplicativo desenvolvido durante o curso da Udemy
 </div>
