@@ -46,7 +46,9 @@ class MovieListController {
       }
       if (filters['category'] != null && filters['category']!.isNotEmpty) {
         result = result
-            .where((movie) => movie.gender == filters['category'])
+            .where((movie) =>
+                movie.gender.toLowerCase() ==
+                filters['category']!.toLowerCase())
             .toList();
       }
       logger.d('Movies found: ${result.length}');

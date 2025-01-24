@@ -1,12 +1,10 @@
 import 'package:app_filmes/controller/movie_detail_controller.dart';
 import 'package:app_filmes/data/models/movie.dart';
 import 'package:duration/duration.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class MovieDetailWidget extends StatelessWidget {
   const MovieDetailWidget({super.key, required this.movie});
@@ -17,6 +15,7 @@ class MovieDetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final MovieDetailController controller =
         Get.put(MovieDetailController(movie), tag: movie.id.toString());
+    final TextEditingController commentController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +43,8 @@ class MovieDetailWidget extends StatelessWidget {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  const FaIcon(FontAwesomeIcons.calendarAlt, size: 20),
+                  const FaIcon(FontAwesomeIcons.calendarAlt,
+                      size: 20, color: Colors.orange),
                   const SizedBox(width: 8),
                   Text(
                     'Ano: ${movie.year}',
@@ -55,7 +55,8 @@ class MovieDetailWidget extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(FeatherIcons.clock, size: 20),
+                  const FaIcon(FontAwesomeIcons.clock,
+                      size: 20, color: Colors.orange),
                   const SizedBox(width: 8),
                   Text(
                     'Duração: ${prettyDuration(Duration(minutes: movie.duration), abbreviated: true, delimiter: ' ', spacer: '')}',
@@ -66,7 +67,8 @@ class MovieDetailWidget extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(LineAwesomeIcons.file, size: 20),
+                  const FaIcon(FontAwesomeIcons.film,
+                      size: 20, color: Colors.orange),
                   const SizedBox(width: 8),
                   Text(
                     'Gênero: ${movie.gender}',
@@ -83,7 +85,8 @@ class MovieDetailWidget extends StatelessWidget {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  const Icon(EvaIcons.messageCircle, size: 20),
+                  const FaIcon(FontAwesomeIcons.comments,
+                      size: 20, color: Colors.orange),
                   const SizedBox(width: 8),
                   Text(
                     'Comentários:',
@@ -95,27 +98,41 @@ class MovieDetailWidget extends StatelessWidget {
               GetBuilder<MovieDetailController>(
                 tag: movie.id.toString(),
                 builder: (controller) {
-                  return Column(
-                    children: controller.comments
-                        .asMap()
-                        .entries
-                        .map((entry) => ListTile(
-                              title: Text(entry.value.comment),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete),
-                                onPressed: () {
-                                  controller.removeComment(entry.key);
-                                },
-                              ),
-                            ))
-                        .toList(),
-                  );
+                  if (controller.comments.isEmpty) {
+                    return const Text(
+                      'Seja o primeiro a Comentar...',
+                      style: TextStyle(fontStyle: FontStyle.italic),
+                    );
+                  } else {
+                    return Column(
+                      children:
+                          controller.comments.asMap().entries.map((entry) {
+                        final comment = entry.value;
+                        final formattedDate = DateFormat('dd/MM/yyyy HH:mm')
+                            .format(comment.createdAt);
+                        return ListTile(
+                          title: Text(comment.comment),
+                          subtitle: Text(
+                            formattedDate,
+                            style: const TextStyle(
+                                fontSize: 12, color: Colors.grey),
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              controller.removeComment(entry.key);
+                            },
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  }
                 },
               ),
               const SizedBox(height: 16),
               TextField(
+                controller: commentController,
                 onChanged: controller.setNewComment,
-                controller: TextEditingController(text: controller.newComment),
                 decoration: const InputDecoration(
                   labelText: 'Adicionar Comentário',
                   border: OutlineInputBorder(),
@@ -123,10 +140,13 @@ class MovieDetailWidget extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange, // Cor de destaque
+                ),
                 onPressed: () {
                   controller.addComment();
                   // Limpar o campo de comentário
-                  controller.setNewComment('');
+                  commentController.clear();
                 },
                 child: const Text('Adicionar'),
               ),

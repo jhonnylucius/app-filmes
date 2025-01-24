@@ -32,7 +32,6 @@ class _MovieListScreenState extends State<MovieListScreen> {
     );
 
     if (result != null) {
-      // Implementar a lógica de pesquisa aqui
       controller.searchMovies(result);
     }
   }

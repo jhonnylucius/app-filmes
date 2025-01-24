@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SearchDialog extends StatefulWidget {
   const SearchDialog({super.key});
@@ -24,8 +25,11 @@ class SearchDialogState extends State<SearchDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Nome do Filme',
+                  prefixIcon:
+                      const Icon(FontAwesomeIcons.film, color: Colors.orange),
+                  border: const OutlineInputBorder(),
                 ),
                 onChanged: (value) {
                   _movieName = value;
@@ -33,11 +37,23 @@ class SearchDialogState extends State<SearchDialog> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Ano',
+                  prefixIcon: const Icon(FontAwesomeIcons.solidCalendarDays,
+                      color: Colors.orange),
+                  border: const OutlineInputBorder(),
                 ),
-                items: <String>['2021', '2020', '2019', '2018']
-                    .map((String value) {
+                items: <String>[
+                  '2025',
+                  '2024',
+                  '2023',
+                  '2022',
+                  '2021',
+                  '2020',
+                  '2019',
+                  '2018',
+                  '2017'
+                ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -51,15 +67,31 @@ class SearchDialogState extends State<SearchDialog> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Categoria',
+                  prefixIcon:
+                      const Icon(FontAwesomeIcons.list, color: Colors.orange),
+                  border: const OutlineInputBorder(),
                 ),
                 items: <String>[
                   'Action',
+                  'Adventure',
+                  'Animation',
                   'Comedy',
+                  'Crime',
+                  'Documentary',
                   'Drama',
+                  'Family',
+                  'Fantasy',
+                  'History',
                   'Horror',
-                  'Animation'
+                  'Music',
+                  'Mystery',
+                  'Romance',
+                  'Science Fiction',
+                  'Thriller',
+                  'War',
+                  'Western'
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -84,6 +116,9 @@ class SearchDialogState extends State<SearchDialog> {
           child: const Text('Cancelar'),
         ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.orange, // Cor de destaque
+          ),
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               Navigator.of(context).pop({
