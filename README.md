@@ -5,7 +5,7 @@
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg" width="70" />
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg" width="70" />
   
-  ## Todo App - Flutter & Dart
+  ## Todo App - Flutter & Dart - 🎥 Demonstração
 
   ![🎥Demonstração do Tradutor de Artigos](app_filmes/assets/demonstracao.gif)
   
