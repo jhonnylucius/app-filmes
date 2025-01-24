@@ -18,6 +18,7 @@ class _MovieListScreenState extends State<MovieListScreen> {
   final controller = getIt<MovieListController>();
   final Logger logger = Logger();
   int _currentPage = 0;
+  bool _isSearching = false;
 
   @override
   void initState() {
@@ -32,6 +33,9 @@ class _MovieListScreenState extends State<MovieListScreen> {
     );
 
     if (result != null) {
+      setState(() {
+        _isSearching = true;
+      });
       controller.searchMovies(result);
     }
   }
@@ -92,8 +96,10 @@ class _MovieListScreenState extends State<MovieListScreen> {
                   SizedBox(
                     height: 300, // Aumentar a altura do PageView
                     child: PageView.builder(
-                      itemCount:
-                          movies.length * 1000, // Tornar o carrossel infinito
+                      itemCount: _isSearching
+                          ? movies.length
+                          : movies.length *
+                              1000, // Tornar o carrossel infinito apenas na página inicial
                       controller: PageController(viewportFraction: 0.3),
                       onPageChanged: (int index) {
                         setState(() {
