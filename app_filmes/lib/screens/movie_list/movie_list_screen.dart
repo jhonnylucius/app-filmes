@@ -73,7 +73,7 @@ class _MovieListScreenState extends State<MovieListScreen> {
               // Imagem de fundo
               Positioned.fill(
                 child: Image.network(
-                  movies[_currentPage].urlImage,
+                  movies[_currentPage % movies.length].urlImage,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -92,7 +92,8 @@ class _MovieListScreenState extends State<MovieListScreen> {
                   SizedBox(
                     height: 300, // Aumentar a altura do PageView
                     child: PageView.builder(
-                      itemCount: movies.length,
+                      itemCount:
+                          movies.length * 1000, // Tornar o carrossel infinito
                       controller: PageController(viewportFraction: 0.3),
                       onPageChanged: (int index) {
                         setState(() {
@@ -101,8 +102,12 @@ class _MovieListScreenState extends State<MovieListScreen> {
                       },
                       itemBuilder: (context, index) {
                         return Transform.scale(
-                          scale: index == _currentPage ? 1.0 : 0.8,
-                          child: MovieItemWidget(movie: movies[index]),
+                          scale: index % movies.length ==
+                                  _currentPage % movies.length
+                              ? 1.0
+                              : 0.8,
+                          child: MovieItemWidget(
+                              movie: movies[index % movies.length]),
                         );
                       },
                     ),
