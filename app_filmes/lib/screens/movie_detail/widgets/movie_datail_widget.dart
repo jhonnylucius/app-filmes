@@ -1,8 +1,12 @@
 import 'package:app_filmes/controller/movie_detail_controller.dart';
 import 'package:app_filmes/data/models/movie.dart';
 import 'package:duration/duration.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class MovieDetailWidget extends StatelessWidget {
   const MovieDetailWidget({super.key, required this.movie});
@@ -12,7 +16,7 @@ class MovieDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MovieDetailController controller =
-        Get.put(MovieDetailController(movie));
+        Get.put(MovieDetailController(movie), tag: movie.id.toString());
 
     return Scaffold(
       appBar: AppBar(
@@ -38,19 +42,37 @@ class MovieDetailWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
-                'Ano: ${movie.year}',
-                style: Theme.of(context).textTheme.titleSmall,
+              Row(
+                children: [
+                  const FaIcon(FontAwesomeIcons.calendarAlt, size: 20),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Ano: ${movie.year}',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
-              Text(
-                'Duração: ${prettyDuration(Duration(minutes: movie.duration), abbreviated: true, delimiter: ' ', spacer: '')}',
-                style: Theme.of(context).textTheme.titleSmall,
+              Row(
+                children: [
+                  const Icon(FeatherIcons.clock, size: 20),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Duração: ${prettyDuration(Duration(minutes: movie.duration), abbreviated: true, delimiter: ' ', spacer: '')}',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
-              Text(
-                'Gênero: ${movie.gender}',
-                style: Theme.of(context).textTheme.titleSmall,
+              Row(
+                children: [
+                  const Icon(LineAwesomeIcons.file, size: 20),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Gênero: ${movie.gender}',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Text(
@@ -59,12 +81,19 @@ class MovieDetailWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 16),
-              Text(
-                'Comentários:',
-                style: Theme.of(context).textTheme.titleSmall,
+              Row(
+                children: [
+                  const Icon(EvaIcons.messageCircle, size: 20),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Comentários:',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               GetBuilder<MovieDetailController>(
+                tag: movie.id.toString(),
                 builder: (controller) {
                   return Column(
                     children: controller.comments
