@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class ProgressIndicadorWidget extends StatefulWidget {
-  const ProgressIndicadorWidget({super.key});
+class ProgressIndicador2Widget extends StatefulWidget {
+  const ProgressIndicador2Widget({super.key});
 
   @override
-  State<ProgressIndicadorWidget> createState() =>
-      _ProgressIndicadorWidgetState();
+  State<ProgressIndicador2Widget> createState() =>
+      _ProgressIndicador2WidgetState();
 }
 
-class _ProgressIndicadorWidgetState extends State<ProgressIndicadorWidget>
+class _ProgressIndicador2WidgetState extends State<ProgressIndicador2Widget>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -33,7 +33,7 @@ class _ProgressIndicadorWidgetState extends State<ProgressIndicadorWidget>
     return Container(
         alignment: Alignment.center,
         child: Lottie.asset(
-          'assets/popcorn.json',
+          'assets/legal.json',
           controller: _controller,
           width: 200,
           height: 200,
