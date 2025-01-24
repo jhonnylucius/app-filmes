@@ -43,7 +43,7 @@ class MovieDetailWidget extends StatelessWidget {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  const FaIcon(FontAwesomeIcons.calendarAlt,
+                  const FaIcon(FontAwesomeIcons.calendarDays,
                       size: 20, color: Colors.orange),
                   const SizedBox(width: 8),
                   Text(
