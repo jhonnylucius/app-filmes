@@ -9,7 +9,7 @@
 
   ![🎥Demonstração do Tradutor de Artigos](app_filmes/assets/demonstracao.gif)
   
-  ### Aplicativo de Lista de Tarefas desenvolvido durante o curso da Udemy
+  ### Aplicativo desenvolvido durante o curso da Udemy
 </div>
 
 Este projeto foi finalizado com sucesso. Agora, ele está pronto para ser utilizado e serve como um excelente exemplo para estudantes que desejam aprender sobre a construção de aplicativos móveis utilizando Flutter e Dart. O aplicativo permite aos usuários pesquisar, visualizar detalhes e adicionar comentários sobre filmes.
