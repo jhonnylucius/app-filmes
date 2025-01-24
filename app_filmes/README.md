@@ -1,7 +1,20 @@
 
 # App Filmes
 
-![Flutter Logo](https://flutter.dev/assets/images/shared/brand/flutter/logo/flutter-lockup.png) ![Dart Logo](https://dart.dev/assets/shared/dart/logo+text/horizontal/white.svg)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg" width="70" />
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg" width="70" />
+  
+  ## Todo App - Flutter & Dart
+
+  ![🎥Demonstração do Tradutor de Artigos](app_filmes/assets/demonstracao.gif)
+  
+  ### Aplicativo de Lista de Tarefas desenvolvido durante o curso da Udemy
+</div>
+
+Este projeto foi finalizado com sucesso. Agora, ele está pronto para ser utilizado e serve como um excelente exemplo para estudantes que desejam aprender sobre a construção de aplicativos móveis utilizando Flutter e Dart. O aplicativo permite aos usuários pesquisar, visualizar detalhes e adicionar comentários sobre filmes.
+
+Além disso, o projeto foi configurado para ser executado em um ambiente de desenvolvimento Codespaces, garantindo que todos os arquivos e dependências necessárias estejam incluídos e configurados corretamente.
 
 Este é um projeto Flutter voltado para estudantes que desejam aprender sobre a construção de aplicativos móveis utilizando Flutter e Dart. O projeto consiste em um aplicativo de filmes que permite aos usuários pesquisar, visualizar detalhes e adicionar comentários sobre filmes.
 
