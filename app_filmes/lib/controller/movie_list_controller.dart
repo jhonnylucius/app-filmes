@@ -27,4 +27,33 @@ class MovieListController {
       _controller.sink.addError(error);
     }
   }
+
+  Future<void> searchMovies(Map<String, String?> filters) async {
+    try {
+      logger.d('Searching movies with filters: $filters');
+      var result = await api.getMovies(); // Ajustar para usar filtros na API
+      if (filters['name'] != null && filters['name']!.isNotEmpty) {
+        result = result
+            .where((movie) => movie.name
+                .toLowerCase()
+                .contains(filters['name']!.toLowerCase()))
+            .toList();
+      }
+      if (filters['year'] != null && filters['year']!.isNotEmpty) {
+        result = result
+            .where((movie) => movie.year.toString() == filters['year'])
+            .toList();
+      }
+      if (filters['category'] != null && filters['category']!.isNotEmpty) {
+        result = result
+            .where((movie) => movie.gender == filters['category'])
+            .toList();
+      }
+      logger.d('Movies found: ${result.length}');
+      _controller.sink.add(result);
+    } catch (error) {
+      logger.e('Error searching movies: $error');
+      _controller.sink.addError(error);
+    }
+  }
 }
