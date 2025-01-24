@@ -8,10 +8,20 @@ class MovieApi {
   );
   final Logger logger = Logger();
 
-  Future<List<Movie>> getMovies({int skip = 0, int take = 20}) async {
+  Future<List<Movie>> getMovies(
+      {int skip = 0, int take = 20, Map<String, String?>? filters}) async {
     try {
       logger.d('Requesting movies from API...');
-      var response = await _dio.get('/filme?skip=$skip&take=$take');
+      var queryParameters = {
+        'skip': skip.toString(),
+        'take': take.toString(),
+      };
+      if (filters != null) {
+        queryParameters.addAll(Map<String, String>.from(
+          filters..removeWhere((_, value) => value == null),
+        ));
+      }
+      var response = await _dio.get('/filme', queryParameters: queryParameters);
       logger.d('Response received: ${response.data}');
       return (response.data as List)
           .map((item) => Movie.fromJson(item))
