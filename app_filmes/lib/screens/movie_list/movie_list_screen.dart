@@ -53,7 +53,7 @@ class _MovieListScreenState extends State<MovieListScreen> {
         builder: (context, snapshot) {
           logger.d('StreamBuilder state: ${snapshot.connectionState}');
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const ProgressIndicadorWidget();
+            return const ProgressIndicador2Widget();
           }
 
           if (snapshot.hasError) {
