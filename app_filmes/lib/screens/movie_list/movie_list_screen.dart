@@ -1,6 +1,7 @@
 import 'package:app_filmes/controller/movie_list_controller.dart';
 import 'package:app_filmes/data/models/movie.dart';
 import 'package:app_filmes/screens/movie_list/widgets/movie_item_widget.dart';
+import 'package:app_filmes/screens/movie_list/widgets/search_dialog.dart';
 import 'package:app_filmes/services/service_locator.dart';
 import 'package:app_filmes/widgets/progress_indicador_widget.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,29 @@ class _MovieListScreenState extends State<MovieListScreen> {
     super.initState();
   }
 
+  void _openSearchDialog() async {
+    final result = await showDialog(
+      context: context,
+      builder: (context) => const SearchDialog(),
+    );
+
+    if (result != null) {
+      // Implementar a lógica de pesquisa aqui
+      controller.searchMovies(result);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lista de Filmes'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: _openSearchDialog,
+          ),
+        ],
       ),
       body: StreamBuilder<List<Movie>>(
         stream: controller.stream,
